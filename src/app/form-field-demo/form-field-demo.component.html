@@ -1,0 +1,104 @@
+<p>form-field-demo works!</p>
+
+<!--必填*-->
+<mat-form-field>
+  <input matInput placeholder="Simple placeholder" required />
+</mat-form-field>
+<br />
+
+<!--限制字數，ex：最多10碼-->
+<mat-form-field hintLabel="Max 10 characters">
+  <input matInput #input maxlength="10" placeholder="Enter some input" />
+  <mat-hint align="end">{{ input.value?.length || 0 }}/10</mat-hint>
+</mat-form-field>
+<br />
+
+<!--email驗證，要寫ts-->
+<mat-form-field>
+  <input
+    matInput
+    placeholder="Enter your email"
+    [formControl]="email"
+    required
+  />
+  <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+</mat-form-field>
+<br />
+
+<!--密碼-->
+<mat-form-field>
+  <input
+    matInput
+    placeholder="Enter your password"
+    [type]="hide ? 'password' : 'text'"
+  />
+  <button
+    mat-icon-button
+    matSuffix
+    (click)="hide = !hide"
+    [attr.aria-label]="'Hide password'"
+    [attr.aria-pressed]="hide"
+  >
+    <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+  </button>
+</mat-form-field>
+<br />
+
+<!--金額-->
+<mat-form-field>
+  <input
+    matInput
+    placeholder="Amount"
+    type="number"
+    class="example-right-align"
+  />
+  <span matPrefix>$&nbsp;</span>
+  <span matSuffix>.00</span>
+</mat-form-field>
+
+<br />
+<!--多行-->
+<mat-form-field class="example-full-width">
+  <textarea matInput placeholder="Leave a comment"></textarea>
+</mat-form-field>
+<br />
+
+<!--單選-->
+<label id="example-radio-group-label">Pick your favorite season</label>
+<mat-radio-group
+  aria-labelledby="example-radio-group-label"
+  class="example-radio-group"
+  [(ngModel)]="favoriteSeason"
+>
+  <mat-radio-button
+    class="example-radio-button"
+    *ngFor="let season of seasons"
+    [value]="season"
+  >
+    {{ season }}
+  </mat-radio-button>
+</mat-radio-group>
+<div>Your favorite season is: {{ favoriteSeason }}</div>
+
+
+<!--check box，點了顯示後面選項-->
+<section class="example-section">
+  <mat-checkbox class="example-margin" [(ngModel)]="showTicks"
+    >Show ticks</mat-checkbox
+  >
+  <mat-checkbox
+    class="example-margin"
+    [(ngModel)]="autoTicks"
+    *ngIf="showTicks"
+  >
+    Auto ticks
+  </mat-checkbox>
+  <mat-form-field class="example-margin" *ngIf="showTicks && !autoTicks">
+    <input
+      matInput
+      type="number"
+      placeholder="Tick interval"
+      [(ngModel)]="tickInterval"
+    />
+  </mat-form-field>
+</section>

@@ -1,0 +1,24 @@
+<p>datepicker-demo works!</p>
+<mat-form-field>
+  <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker> 
+</mat-form-field>
+
+<br/>
+
+<mat-form-field>
+  <input matInput [ngxTimepicker]="toggleTimepicker" placeholder="Choose a time">
+  <ngx-material-timepicker-toggle [for]="toggleTimepicker"></ngx-material-timepicker-toggle>
+  <ngx-material-timepicker #toggleTimepicker></ngx-material-timepicker>
+</mat-form-field>
+
+<br/>
+
+<mat-form-field><!--暫定這個-->
+    Birthday (date and time):<input matInput type="datetime-local" name="bdaytime">
+    <input type="submit">
+</mat-form-field>
+
+<br/>
+
